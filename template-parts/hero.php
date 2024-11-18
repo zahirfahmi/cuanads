@@ -4,25 +4,32 @@ $field = get_field('home');
 if ($field):
 ?>
 
-    <section class="hero">
-        <div class="container">
-            <div class="row justify-content-between hero_wrap">
-                <div class="col-12 col-lg-6 pt-6 pb-6 align-self-center c_left">
-                    <h1><?= $field['heading']; ?></h1>
-                    <p class="mb-3"><?= $field['desc']; ?></p>
-                    <div class="button_wrap">
-                        <a href="<?= $field['button_1']; ?>" class="primary_btn" target="self">Tiktok Likes
-                            Gratis</a>
-                        <a href="<?= $field['button_1']; ?>" class="secondary_btn" target="self">Tiktok View
-                            Gratis</a>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 d-none d-lg-block pr-0">
-                    <img src="https://placehold.co/600x400" alt="">
+<section class="hero">
+    <div class="container">
+        <div class="row justify-content-between hero_wrap py-2 py-md-4">
+            <div class="col-12 col-lg-6 pt-6 pb-6 align-self-center c_left">
+                <?= $field['meta']; ?>
+                <h1><?= $field['heading']; ?></h1>
+                <p class="mb-3"><?= $field['desc']; ?></p>
+                <p style="color:#03a87c; font-weight: 600;"><?= $field['features']; ?></p>
+                <div class="button_wrap">
+                    <?php
+                        if ($field['button']):
+                            foreach ($field['button'] as $btn): ?>
+                    <a href="<?= $btn['url']; ?>" class="<?= $btn['class']; ?>" target="_self"
+                        id="<?= $btn['id']; ?>"><?= $btn['label']; ?></a>
+                    <?php
+                            endforeach;
+                        endif;
+                        ?>
                 </div>
             </div>
+            <div class="col-12 col-lg-6 d-none d-lg-block pr-0 text-center">
+                <?php echo wp_get_attachment_image($field['images'], array(400, 400), array('class' => 'img-responsive')); ?>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <?php
 endif;
