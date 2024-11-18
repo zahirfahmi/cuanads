@@ -40,8 +40,7 @@ defined('ABSPATH') || exit;
             <?php dynamic_sidebar('top-bar'); ?>
         <?php endif; ?>
 
-        <header id="masthead"
-            class="<?= apply_filters('bootscore/class/header', 'sticky-top bg-body-tertiary'); ?> site-header">
+        <header id="masthead" class="<?= apply_filters('bootscore/class/header', 'bg-body-tertiary'); ?> site-header">
 
             <nav id="nav-main"
                 class="navbar <?= apply_filters('bootscore/class/header/navbar/breakpoint', 'navbar-expand-lg'); ?>">
@@ -50,10 +49,7 @@ defined('ABSPATH') || exit;
 
                     <!-- Navbar Brand -->
                     <a class="navbar-brand" href="<?= esc_url(home_url()); ?>">
-                        <img src="http://cuanads.local/wp-content/uploads/2024/11/Logo-CuanAds.png"
-                            alt="<?php bloginfo('name'); ?> Logo" class="d-td-none me-2" style="max-height:25px;">
-                        <img src="http://cuanads.local/wp-content/uploads/2024/11/Logo-CuanAds.png"
-                            alt="<?php bloginfo('name'); ?> Logo" class="d-tl-none me-2" style="max-height:25px;">
+                        <?php echo wp_get_attachment_image(get_field('logo', 'option'), array(25, 200), array('class' => 'img-responsive')); ?>
                     </a>
 
                     <!-- Offcanvas Navbar -->
