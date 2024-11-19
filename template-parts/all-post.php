@@ -5,7 +5,7 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-12 col-lg-8">
-                <div class="title spanborder"><span>All Stories</span></div>
+                <div class="title spanborder"><span>Semua Post</span></div>
                 <?php
                 $args = array(
                     'post_type'      => 'post',
@@ -25,7 +25,7 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
                                     <h2 class="mb-2">
                                         <?= get_the_title(); ?>
                                     </h2>
-                                    <p><?= wp_trim_words(get_the_content(), 20, '...'); ?></p>
+                                    <p><?= wp_trim_words(get_the_content(), 16, '...'); ?></p>
                                 </a>
                                 <div class="meta">
                                     <div class="cat small">
@@ -52,46 +52,47 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
                 ?>
             </div>
             <div class="col-12 col-lg-4 pl-4">
-                <div class="title spanborder"><span>Popular</span></div>
-                <ol class="list-featured">
-                    <?php
-                    $args = array(
-                        'post_type'      => 'post',
-                        'post_status'    => 'publish',
-                        'posts_per_page' =>  4,
-                        'orderby'        => 'date',
-                        'order'          => 'DESC',
-                    );
+                <div class="sticky-top">
+                    <div class="title spanborder"><span>Popular Post</span></div>
+                    <ol class="list-featured">
+                        <?php
+                        $args = array(
+                            'post_type'      => 'post',
+                            'post_status'    => 'publish',
+                            'posts_per_page' =>  4,
+                            'orderby'        => 'date',
+                            'order'          => 'DESC',
+                        );
 
-                    $query = new WP_Query($args);
+                        $query = new WP_Query($args);
 
-                    if ($query->have_posts()) :
-                        while ($query->have_posts()) : $query->the_post(); ?>
-                            <li>
-                                <a href="<?php echo get_the_permalink(); ?>" class="text-dark">
-                                    <span>
-                                        <h3>
-
-                                            <?= get_the_title(); ?>
-                                        </h3>
-                                        <p class="text-muted">
-                                            <?php
-                                            $categories = get_the_category();
-                                            $category_list = [];
-                                            foreach ($categories as $category) {
-                                                $category_list[] = $category->name;
-                                            }
-                                            $categories_text = implode(', ', $category_list);
-                                            echo $categories_text;
-                                            ?></p>
-                                    </span>
-                                </a>
-                            </li>
-                    <?php
-                        endwhile;
-                    endif;
-                    ?>
-                </ol>
+                        if ($query->have_posts()) :
+                            while ($query->have_posts()) : $query->the_post(); ?>
+                                <li>
+                                    <a href="<?php echo get_the_permalink(); ?>" class="text-dark">
+                                        <span>
+                                            <h3>
+                                                <?= get_the_title(); ?>
+                                            </h3>
+                                            <p class="text-muted">
+                                                <?php
+                                                $categories = get_the_category();
+                                                $category_list = [];
+                                                foreach ($categories as $category) {
+                                                    $category_list[] = $category->name;
+                                                }
+                                                $categories_text = implode(', ', $category_list);
+                                                echo $categories_text;
+                                                ?></p>
+                                        </span>
+                                    </a>
+                                </li>
+                        <?php
+                            endwhile;
+                        endif;
+                        ?>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
