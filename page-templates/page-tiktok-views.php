@@ -47,7 +47,7 @@ get_header();
                             <?php echo get_the_content(); ?>
                         </div>
                         <div class="col-12 col-lg-4">
-
+                            <?php get_template_part('template-parts/components/sidebar'); ?>
                         </div>
                     </div>
                 </div>

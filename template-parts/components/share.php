@@ -44,7 +44,7 @@ wp_enqueue_script('share-widget', get_stylesheet_directory_uri() . '/assets/js/c
     <div class="copy-link-url">
         <div class="link">
             <div class="pen-url" id="link">
-                <? the_permalink(); ?>
+                <?php the_permalink(); ?>
             </div>
             <button class="copy-link" type="button" onclick="copyToClipboard('#link')">Copy Link</button>
         </div>

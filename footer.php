@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 
 ?>
 
-<footer class="bootscore-footer">
+<footer class="bootscore-footer" style="border-top: 1px solid #dedede;">
 
   <?php if (is_active_sidebar('footer-top')) : ?>
     <div
@@ -66,7 +66,7 @@ defined('ABSPATH') || exit;
   </div>
 
   <div
-    class="<?= apply_filters('bootscore/class/footer/info', 'bg-body-tertiary text-body-secondary border-top py-2 text-center'); ?> bootscore-footer-info">
+    class="<?= apply_filters('bootscore/class/footer/info', 'bg-body-tertiary text-body-secondary py-2 text-center'); ?> bootscore-footer-info">
     <div class="<?= apply_filters('bootscore/class/container', 'container', 'footer-info'); ?>">
       <?php if (is_active_sidebar('footer-info')) : ?>
         <?php dynamic_sidebar('footer-info'); ?>
@@ -80,7 +80,7 @@ defined('ABSPATH') || exit;
 
 <!-- To top button -->
 <a href="#"
-  class="<?= apply_filters('bootscore/class/footer/to_top_button', 'btn btn-primary shadow'); ?> position-fixed zi-1000 top-button"><i
+  class="<?= apply_filters('bootscore/class/footer/to_top_button', 'btn btn-prim shadow'); ?> position-fixed zi-1000 top-button"><i
     class="fa-solid fa-chevron-up"></i><span class="visually-hidden-focusable">To top</span></a>
 
 </div><!-- #page -->

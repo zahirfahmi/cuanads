@@ -8,6 +8,10 @@ h1,h2,h3,h4,h5,h6,body
         font-size: 48px
         line-height: 60px
         font-weight: 700
+        @media screen and ( max-width:  480px)
+            font-size: 32px
+            line-height: 46px
+            font-weight: 700
     h2
         font-size: 32px
         line-height: 40px
@@ -125,4 +129,20 @@ ol.list-featured
         width: 100px
         height: auto
 
-ol.wp-block-list
+.nav-link
+    color: #495057
+    transition: .3s
+    &:hover
+        color: #03a87c
+
+ul#footer-menu
+    justify-content: center
+
+.btn-prim
+    color: #fff
+    background: #03a87c
+    border-color: #03a87c
+    &:hover
+        color: #fff
+        background: #048663
+        border-color: #048663
