@@ -2,6 +2,18 @@
     padding: 64px 0
     @media screen and ( max-width:  991px)
         padding: 32px 0
+    a
+        color: #03a87c
+        font-weight: 600
+        text-decoration: underline
+        &:hover
+            color: #0d8c6a
+    ol.list-featured
+        li
+            a
+                text-decoration: none
+                &:hover
+                    text-decoration: underline
     .form-tiktok
         display: flex
         flex-direction: column
@@ -58,3 +70,8 @@
                     width: 100%
                 &:hover
                     background: #048663
+
+ol.wp-block-list li
+    margin-bottom: 1rem
+    @media screen and ( max-width:  480px)
+        margin-bottom: .5rem
