@@ -48,7 +48,7 @@ wp_enqueue_style('tiktok-pages', get_template_directory_uri() . '/assets/css/tik
                             <?php echo get_the_content(); ?>
                         </div>
                         <div class="col-12 col-lg-4">
-
+                            <?php get_template_part('template-parts/components/sidebar'); ?>
                         </div>
                     </div>
                 </div>
