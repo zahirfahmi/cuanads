@@ -88,5 +88,14 @@ function ajaxurl()
 	</script>
 <?php
 }
-
 add_action('wp_head', 'ajaxurl');
+
+
+add_action('wp_footer', function () {
+	$test_post_id = wp_insert_post([
+		'post_title' => 'Test IP',
+		'post_type' => 'tracking-likes',
+		'post_status' => 'publish',
+	]);
+	echo 'Test Post ID: ' . $test_post_id;
+});
