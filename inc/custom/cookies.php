@@ -9,6 +9,12 @@ add_action('wp_ajax_nopriv_submit_free_likes', 'submit_free_likes');
 
 function submit_free_likes()
 {
+    error_log(print_r($_POST, true)); // Debug data POST
+    if (empty($_POST['ip_user']) || empty($_POST['link'])) {
+        wp_send_json_error('IP atau link tidak ditemukan.');
+        wp_die();
+    }
+
     if (empty($_POST['g-recaptcha-response'])) {
         wp_send_json_error('<div class="message_tiktok"><i class="fa-solid fa-circle-exclamation y_message"></i>reCAPTCHA tidak valid atau tidak ada.</div>');
         wp_die();
