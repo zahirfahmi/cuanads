@@ -10,19 +10,19 @@
 
 get_header();
 wp_enqueue_style(
-  'single',
-  get_stylesheet_directory_uri() . '/assets/css/single.min.css',
-  false,
-  filemtime(get_theme_file_path('/assets/css/single.min.css')),
-  'all'
+    'single',
+    get_stylesheet_directory_uri() . '/assets/css/single.min.css',
+    false,
+    filemtime(get_theme_file_path('/assets/css/single.min.css')),
+    'all'
 );
 
 wp_enqueue_style(
-  'sidebar',
-  get_stylesheet_directory_uri() . '/assets/css/sidebar.min.css',
-  false,
-  filemtime(get_theme_file_path('/assets/css/sidebar.min.css')),
-  'all'
+    'sidebar',
+    get_stylesheet_directory_uri() . '/assets/css/sidebar.min.css',
+    false,
+    filemtime(get_theme_file_path('/assets/css/sidebar.min.css')),
+    'all'
 );
 
 $postID = get_the_ID();
@@ -38,6 +38,7 @@ $args = array('post_id' => $postID);
                 <div class="col-12">
                     <div class="blog-top">
                         <div class="bredcrumb">
+                            <?php echo do_shortcode('[rank_math_breadcrumb]'); ?>
                         </div>
                         <div class="post-title">
                             <h1>
@@ -47,7 +48,7 @@ $args = array('post_id' => $postID);
                             <div class="author">
                                 <span><i
                                         class="fa-solid fa-tag"></i></span><?php foreach (get_the_category(get_the_ID()) as $cat) : ?>
-                                <a href="../category/<?= $cat->slug ?>"><?= ' ' . $cat->name; ?></a>
+                                    <a href="../category/<?= $cat->slug ?>"><?= ' ' . $cat->name; ?></a>
                                 <?php endforeach; ?>
                             </div>
 
