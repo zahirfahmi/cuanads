@@ -22,8 +22,10 @@ get_header();
                         <div class="col-md-6">
                             <h1><?= get_the_title(); ?></h1>
                             <p>Nikmati layanan TikTok View gratis yang mempermudah Anda untuk meningkatkan popularitas
-                                akun Anda! Dapatkan 100 View gratis setiap <b><?= get_reset_time_tiktok_likes() / 60; ?>
-                                    menit</b> , tanpa biaya apa pun.</p>
+                                akun Anda! Dapatkan <?= get_views()['qty']; ?> View gratis setiap
+                                <b><?= get_reset_time_tiktok_Views() / 60; ?>
+                                    menit</b> , tanpa biaya apa pun.
+                            </p>
                         </div>
                         <div class="col-md-6 pt-3">
                             <div class="row g-3">
@@ -35,7 +37,7 @@ get_header();
                                     <div class="button_wrap">
                                         <button class="primary_btn" type="submit" id="submitBtnViews"
                                             disabled>Submit</button>
-                                        <a href="#" class="secondary_btn">Beli Tiktok Views</a>
+                                        <a href="https://wa.link/3gayzb" class="secondary_btn">Beli Tiktok Views</a>
                                     </div>
                                 </form>
                                 <div id="messageViews"></div>
