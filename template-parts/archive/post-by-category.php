@@ -3,7 +3,7 @@ wp_enqueue_style('post-by-category', get_template_directory_uri() . '/assets/css
 $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 $current_category = get_queried_object();
 ?>
-<div class="title spanborder"><span>Semua dari <?= $current_category->name; ?></span></div>
+<h1 class="title spanborder"><span>Semua dari <?= $current_category->name; ?></span></h1>
 <?php
 
 $args = array(

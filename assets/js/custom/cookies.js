@@ -1,6 +1,6 @@
 jQuery(function () {
   jQuery.getJSON('https://api.ipify.org?format=jsonp&callback=?', function (json) {
-    setCookie('ip_user', json.ip, 30); // Simpan IP user dalam cookie selama 30 hari
+    setCookie('ip_user', json.ip, 30);
   });
 });
 

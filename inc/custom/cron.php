@@ -1,36 +1,28 @@
 <?php
-function delete_all_tracking_likes()
+function delete_all_ip_addresses_like()
 {
-    $args = array(
-        'post_type'      => 'tracking-likes',
-        'posts_per_page' => -1,
-        'fields'         => 'ids'
-    );
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'user_ips';
+    $result = $wpdb->query("DELETE FROM $table_name");
 
-    $all_ip_logs = get_posts($args);
-
-    if (!empty($all_ip_logs)) {
-        foreach ($all_ip_logs as $post_id) {
-            wp_delete_post($post_id, true);
-        }
+    if ($result === false) {
+        error_log("Failed to delete records from table: $table_name");
+    } else {
+        error_log("Deleted $result records from table: $table_name");
     }
 }
-add_action('delete_tracking_likes_cron', 'delete_all_tracking_likes');
+add_action('delete_all_ip_addresses_like_hook', 'delete_all_ip_addresses_like');
 
-function delete_all_tracking_views()
+function delete_all_ip_addresses_view()
 {
-    $args = array(
-        'post_type'      => 'tracking-views',
-        'posts_per_page' => -1,
-        'fields'         => 'ids'
-    );
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'user_ips_view';
+    $result = $wpdb->query("DELETE FROM $table_name");
 
-    $all_ip_logs = get_posts($args);
-
-    if (!empty($all_ip_logs)) {
-        foreach ($all_ip_logs as $post_id) {
-            wp_delete_post($post_id, true);
-        }
+    if ($result === false) {
+        error_log("Failed to delete records from table: $table_name");
+    } else {
+        error_log("Deleted $result records from table: $table_name");
     }
 }
-add_action('delete_tracking_views_cron', 'delete_all_tracking_views');
+add_action('delete_all_ip_addresses_view_hook', 'delete_all_ip_addresses_view');

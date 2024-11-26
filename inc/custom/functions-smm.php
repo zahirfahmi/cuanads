@@ -63,3 +63,23 @@ function get_views()
     }
     return null;
 }
+
+function format_time_difference($seconds)
+{
+    $hours = floor($seconds / 3600);
+    $minutes = floor(($seconds % 3600) / 60);
+    $seconds = $seconds % 60;
+
+    $time_string = '';
+    if ($hours > 0) {
+        $time_string .= $hours . ' jam ';
+    }
+    if ($minutes > 0) {
+        $time_string .= $minutes . ' menit ';
+    }
+    if ($seconds > 0 || $time_string == '') {
+        $time_string .= $seconds . ' detik';
+    }
+
+    return $time_string;
+}

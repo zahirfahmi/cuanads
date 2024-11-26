@@ -48,7 +48,7 @@ $args = array('post_id' => $postID);
                             <div class="author">
                                 <span><i
                                         class="fa-solid fa-tag"></i></span><?php foreach (get_the_category(get_the_ID()) as $cat) : ?>
-                                    <a href="../category/<?= $cat->slug ?>"><?= ' ' . $cat->name; ?></a>
+                                    <a href="/category/<?= $cat->slug ?>"><?= ' ' . $cat->name; ?></a>
                                 <?php endforeach; ?>
                             </div>
 

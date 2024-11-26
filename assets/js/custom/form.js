@@ -1,42 +1,92 @@
-jQuery(function ($) {
-  $('#linkFormLikes').submit(function (event) {
-    event.preventDefault();
-    const linkInput = $('#linkLikes').val();
+jQuery(function () {
+  jQuery('#linkFormLikes').on('submit', function (e) {
+    e.preventDefault();
 
-    $.ajax({
-      url: ajaxurl,
-      type: 'POST',
-      data: {
-        action: 'submit_free_likes',
-        link: linkInput,
-        ip_user: getCookie('ip_user'),
-      },
-      success: function (response) {
-        $('#messageLikes').html(response.data || response.error);
-        console.log(response);
-      },
-    });
+    let ip = getCookie('ip_user');
+    let link = jQuery('#linkLikes').val();
+    let recaptchaResponse = grecaptcha.getResponse();
+
+    if (!link || link.trim() === '') {
+      jQuery('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Link tidak boleh kosong.</span></div>");
+      return;
+    }
+
+    if (!recaptchaResponse) {
+      jQuery('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Silakan verifikasi reCAPTCHA.</span></div>");
+      return;
+    }
+
+    jQuery('#submitBtnLikes').html('<i class="fa-solid fa-spinner fa-spin"></i> Processing...').prop('disabled', true);
+
+    jQuery
+      .post(
+        ajaxurl,
+        {
+          action: 'process_likes',
+          ip_address: ip,
+          link: link,
+          'g-recaptcha-response': recaptchaResponse,
+        },
+        function (response) {
+          jQuery('#submitBtnLikes').html('Submit').prop('disabled', false);
+
+          if (response.success) {
+            jQuery('#messageLikes').html("<div class='message_tiktok grn'><i class='fa-solid fa-circle-check g_message'></i><span class='y_text'>" + response.data.message + '</span></div>');
+          } else {
+            jQuery('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>" + response.data.message + '</span></div>');
+          }
+          console.log(response);
+        }
+      )
+      .fail(function () {
+        jQuery('#submitBtnLikes').html('Submit').prop('disabled', false);
+        jQuery('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Terjadi kesalahan. Coba lagi nanti.</span></div>");
+      });
   });
-});
 
-jQuery(function ($) {
-  $('#linkFormViews').submit(function (event) {
-    event.preventDefault();
-    const linkInput = $('#linkViews').val();
+  jQuery('#linkFormViews').on('submit', function (e) {
+    e.preventDefault();
 
-    $.ajax({
-      url: ajaxurl,
-      type: 'POST',
-      data: {
-        action: 'submit_free_views',
-        link: linkInput,
-        ip_user: getCookie('ip_user'),
-      },
-      success: function (response) {
-        $('#messageViews').html(response.data || response.error);
-        console.log(response);
-      },
-    });
+    let ip = getCookie('ip_user');
+    let link = jQuery('#linkViews').val();
+    let recaptchaResponse = grecaptcha.getResponse();
+
+    if (!link || link.trim() === '') {
+      jQuery('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Link tidak boleh kosong.</span></div>");
+      return;
+    }
+
+    if (!recaptchaResponse) {
+      jQuery('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Silakan verifikasi reCAPTCHA.</span></div>");
+      return;
+    }
+
+    jQuery('#submitBtnViews').html('<i class="fa-solid fa-spinner fa-spin"></i> Processing...').prop('disabled', true);
+
+    jQuery
+      .post(
+        ajaxurl,
+        {
+          action: 'process_views',
+          ip_address: ip,
+          link: link,
+          'g-recaptcha-response': recaptchaResponse,
+        },
+        function (response) {
+          jQuery('#submitBtnViews').html('Submit').prop('disabled', false);
+
+          if (response.success) {
+            jQuery('#messageViews').html("<div class='message_tiktok grn'><i class='fa-solid fa-circle-check g_message'></i><span class='y_text'>" + response.data.message + '</span></div>');
+          } else {
+            jQuery('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>" + response.data.message + '</span></div>');
+          }
+          console.log(response);
+        }
+      )
+      .fail(function () {
+        jQuery('#submitBtnViews').html('Submit').prop('disabled', false);
+        jQuery('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Terjadi kesalahan. Coba lagi nanti.</span></div>");
+      });
   });
 });
 
@@ -54,88 +104,20 @@ jQuery(function ($) {
       $('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Masukkan link TikTok yang benar.</span></div>");
     }
   });
+});
+
+jQuery(function ($) {
+  const tiktokUrlPattern = /^(https?:\/\/)?(www\.)?(tiktok\.com|vt\.tiktok\.com)\/.+$/;
 
   $('#linkViews').on('input', function () {
     const isValidTikTokLink = tiktokUrlPattern.test($(this).val());
 
     if (isValidTikTokLink) {
       $('#submitBtnViews').prop('disabled', false);
-      $('#messageViews').html('');
+      $('#messageViews').text('');
     } else {
       $('#submitBtnViews').prop('disabled', true);
       $('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Masukkan link TikTok yang benar.</span></div>");
     }
-  });
-
-  $('#submitBtnLikes').on('click', function (e) {
-    e.preventDefault();
-    const recaptchaResponse = grecaptcha.getResponse();
-
-    if (recaptchaResponse === '') {
-      $('#messageLikes').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Mohon verifikasi reCAPTCHA.</span></div>");
-      return;
-    }
-
-    // Tampilkan spinner
-    $('#submitBtnLikes').html('<i class="fa-solid fa-spinner fa-spin"></i> Processing...').prop('disabled', true);
-
-    $.ajax({
-      url: ajaxurl,
-      type: 'POST',
-      data: {
-        action: 'submit_free_likes',
-        'g-recaptcha-response': recaptchaResponse,
-        ip_user: '<?php echo $_SERVER["REMOTE_ADDR"]; ?>',
-        link: $('#linkLikes').val(),
-      },
-      success: function (response) {
-        if (response.success) {
-          $('#messageLikes').html("<div class='message_tiktok grn'><i class='fa-solid fa-circle-check g_message'></i><span class='y_text'>Berhasil, Likes anda akan segera bertambah.</span></div>");
-        } else {
-          $('#messageLikes').html(response.data);
-        }
-      },
-      complete: function () {
-        // Sembunyikan spinner
-        $('#submitBtnLikes').html('Submit').prop('disabled', false);
-        grecaptcha.reset();
-      },
-    });
-  });
-
-  $('#submitBtnViews').on('click', function (e) {
-    e.preventDefault();
-    const recaptchaResponse = grecaptcha.getResponse();
-
-    if (recaptchaResponse === '') {
-      $('#messageViews').html("<div class='message_tiktok ylw'><i class='fa-solid fa-circle-exclamation y_message'></i><span class='y_text'>Mohon verifikasi reCAPTCHA.</span></div>");
-      return;
-    }
-
-    // Tampilkan spinner
-    $('#submitBtnViews').html('<i class="fa-solid fa-spinner fa-spin"></i> Processing...').prop('disabled', true);
-
-    $.ajax({
-      url: ajaxurl,
-      type: 'POST',
-      data: {
-        action: 'submit_free_views',
-        'g-recaptcha-response': recaptchaResponse,
-        ip_user: '<?php echo $_SERVER["REMOTE_ADDR"]; ?>',
-        link: $('#linkViews').val(),
-      },
-      success: function (response) {
-        if (response.success) {
-          $('#messageViews').html("<div class='message_tiktok grn'><i class='fa-solid fa-circle-check g_message'></i><span class='y_text'>Berhasil, Views anda akan segera bertambah.</span></div>");
-        } else {
-          $('#messageViews').html(response.data);
-        }
-      },
-      complete: function () {
-        // Sembunyikan spinner
-        $('#submitBtnViews').html('Submit').prop('disabled', false);
-        grecaptcha.reset();
-      },
-    });
   });
 });
