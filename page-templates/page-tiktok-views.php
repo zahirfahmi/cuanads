@@ -29,7 +29,7 @@ get_header();
                         </div>
                         <div class="col-md-6 pt-3">
                             <div class="row g-3">
-                                <form id="linkFormLikes" class="form-tiktok">
+                                <form id="linkFormViews" class="form-tiktok">
                                     <input type="text" id="linkViews" name="linkViews"
                                         placeholder="Masukan Link Video TikTok Kamu" required>
                                     <div class="g-recaptcha"

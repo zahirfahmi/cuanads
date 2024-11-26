@@ -58,7 +58,7 @@ wp_enqueue_style('tiktok-pages', get_template_directory_uri() . '/assets/css/tik
         </main>
     </div>
 </div>
-
+<?php delete_all_ip_addresses_like(); ?>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <?php
 get_footer();
