@@ -7,11 +7,6 @@ function process_likes_submission()
 {
     global $wpdb;
 
-    if (!isset($_POST['ip_address']) || empty($_POST['ip_address'])) {
-        wp_send_json_error(['message' => 'IP Address is required']);
-        wp_die();
-    }
-
     $recaptcha_response = sanitize_text_field($_POST['g-recaptcha-response']);
     $recaptcha_secret = get_recapcha()['secret_key'];
 
@@ -93,11 +88,6 @@ add_action('wp_ajax_nopriv_process_likes', 'process_likes_submission');
 function process_views_submission()
 {
     global $wpdb;
-
-    if (!isset($_POST['ip_address']) || empty($_POST['ip_address'])) {
-        wp_send_json_error(['message' => 'IP Address is required']);
-        wp_die();
-    }
 
     $recaptcha_response = sanitize_text_field($_POST['g-recaptcha-response']);
     $recaptcha_secret = get_recapcha()['secret_key'];
