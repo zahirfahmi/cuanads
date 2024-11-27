@@ -10,7 +10,7 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
                 $args = array(
                     'post_type'      => 'post',
                     'post_status'    => 'publish',
-                    'posts_per_page' =>  10,
+                    'posts_per_page' =>  -1,
                     'orderby'        => 'date',
                     'order'          => 'DESC',
                 );
@@ -44,7 +44,7 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
                                 </div>
                             </div>
                             <div class="images d-none d-md-block">
-                                <?php echo get_the_post_thumbnail(get_the_ID(), array(640, 427), array('class' => 'img-responsive')); ?>
+                                <?php echo get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'img-responsive')); ?>
                             </div>
                         </div>
                 <?php endwhile;
