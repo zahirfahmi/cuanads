@@ -90,3 +90,7 @@ function ajaxurl()
 <?php
 }
 add_action('wp_head', 'ajaxurl');
+
+add_filter('language_attributes', function ($lang) {
+	return 'lang="id-ID"';
+});
