@@ -83,3 +83,15 @@ function format_time_difference($seconds)
 
     return $time_string;
 }
+
+function set_key_captcha()
+{
+    $sitekey = get_field('credentials', 'option');
+
+    $set_key =
+        '<script>
+            let site_key_captcha = "' . $sitekey['site_key'] . '";
+        </script>';
+    echo $set_key;
+}
+add_action('wp_head', 'set_key_captcha');
