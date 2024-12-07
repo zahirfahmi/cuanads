@@ -50,6 +50,8 @@ require_once('inc/custom/additional.php');		 // Custom function
 require_once('inc/custom/register-script.php');
 require_once('inc/custom/functions-smm.php');
 require_once('inc/custom/load-global.php');
+require_once('inc/custom/bot.php');
+require_once('inc/custom/features/instagram.php');
 
 
 //cron

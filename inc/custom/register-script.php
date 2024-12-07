@@ -26,3 +26,16 @@ function enqueue_custom_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+
+
+function scriptsEntry()
+{
+    wp_register_script('main', get_stylesheet_directory_uri() . '/assets/js/custom/cookies.js', array('jquery'), false, false);
+    wp_register_script('validate-token', get_stylesheet_directory_uri() . '/assets/js/custom/validate-token.js', array('jquery'), 'v1.0', false);
+    wp_register_script('instagram-login', get_stylesheet_directory_uri() . '/assets/js/custom/instagram/login.js', array('jquery'), false, false);
+    wp_register_script('instagram-followers', get_stylesheet_directory_uri() . '/assets/js/custom/instagram/instagram-followers.js', array('jquery'), false, false);
+    wp_register_script('instagram-likes', get_stylesheet_directory_uri() . '/assets/js/custom/instagram/instagram-likes.js', array('jquery'), false, false);
+    wp_register_script('alert', get_stylesheet_directory_uri() . '/assets/js/plugins/sweetalert2@11.js', array('jquery'), false, false);
+}
+add_action("wp_enqueue_scripts", "scriptsEntry");
