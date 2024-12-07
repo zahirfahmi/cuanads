@@ -7,6 +7,13 @@
  *
  * @package Bootscore
  */
+wp_enqueue_style(
+    'fitur',
+    get_stylesheet_directory_uri() . '/assets/css/fitur.min.css',
+    false,
+    filemtime(get_theme_file_path('/assets/css/fitur.min.css')),
+    'all'
+);
 
 get_header();
 ?>
@@ -31,9 +38,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="sidebar">
-                        <?php get_template_part('template-parts/components/sidebar'); ?>
-                    </div>
+                    <?php get_template_part('template-parts/components/sidebar'); ?>
                 </div>
             </div>
         </div>
