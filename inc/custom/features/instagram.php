@@ -10,7 +10,16 @@ function set_url_instagram()
 }
 add_action('wp_head', 'set_url_instagram');
 
-
+function ig_information()
+{
+    $ig_info = get_field('ig_information', 'option');
+    $ig_info_ =
+        '<script>
+            let url_harga = "' . $ig_info['url_harga'] . '";
+        </script>';
+    echo $ig_info_;
+}
+add_action('wp_head', 'ig_information');
 
 add_action('wp_ajax_ig_login', 'ig_login');
 add_action('wp_ajax_nopriv_ig_login', 'ig_login');
@@ -76,14 +85,36 @@ function ig_check_username()
         $response = curl_exec($curl);
         curl_close($curl);
 
-        $var = json_decode($response, JSON_PRETTY_PRINT);
-        //convert avatar to base64
-        $avatar = "data:image/png;base64, " . base64_encode(file_get_contents(str_replace("http:", "https:", $var['profile_pic_url'])));
+        $var = json_decode($response, true);
+
+        // Validasi respons API
+        if (empty($var) || !isset($var['profile_pic_url']) || empty($var['profile_pic_url'])) {
+            echo json_encode(array(
+                "error" => true,
+                "message" => "Profile picture URL not found or invalid response."
+            ));
+            die();
+        }
+
+        // Konversi avatar ke base64
+        $profile_pic_url = str_replace("http:", "https:", $var['profile_pic_url']);
+        if (filter_var($profile_pic_url, FILTER_VALIDATE_URL)) {
+            $avatar = "data:image/png;base64, " . base64_encode(file_get_contents($profile_pic_url));
+        } else {
+            $avatar = null; // Atau berikan placeholder avatar
+        }
+
         $result = array(
             "data" => $response,
             "avatar_ig" => $avatar
         );
         echo json_encode($result, JSON_PRETTY_PRINT);
+        die();
+    } else {
+        echo json_encode(array(
+            "error" => true,
+            "message" => "Username is required."
+        ));
         die();
     }
 }
