@@ -107,7 +107,7 @@ add_action('wp_head', function () {
 function add_custom_button_to_nav_menu($items, $args)
 {
 	if ($args->theme_location == 'main-menu') {
-		$button = '<li class="nav-item d-flex" style="d"><a href="/fitur" class="primary_btn_nav d-flex align-items-center justify-content-center text-white ms-0 ms-lg-4">Lihat Semua Fitur</a></li>';
+		$button = '<li class="nav-item d-flex" style="d"><a href="/fitur" class="primary_btn d-flex align-items-center justify-content-center text-white ms-0 ms-lg-4">Lihat Semua Fitur</a></li>';
 		$items .= $button;
 	}
 	return $items;
