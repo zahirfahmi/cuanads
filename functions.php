@@ -103,3 +103,13 @@ add_action('wp_head', function () {
 	echo '<meta property="og:locale:alternate" content="en_US" />' . PHP_EOL;
 	echo '<meta property="og:locale:alternate" content="fr_FR" />' . PHP_EOL;
 });
+
+function add_custom_button_to_nav_menu($items, $args)
+{
+	if ($args->theme_location == 'main-menu') {
+		$button = '<li class="nav-item d-flex" style="d"><a href="/fitur" class="primary_btn_nav d-flex align-items-center justify-content-center text-white ms-0 ms-lg-4">Lihat Semua Fitur</a></li>';
+		$items .= $button;
+	}
+	return $items;
+}
+add_filter('wp_nav_menu_items', 'add_custom_button_to_nav_menu', 10, 2);
