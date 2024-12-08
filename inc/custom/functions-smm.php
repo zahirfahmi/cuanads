@@ -95,3 +95,30 @@ function set_key_captcha()
     echo $set_key;
 }
 add_action('wp_head', 'set_key_captcha');
+
+
+function ig_information()
+{
+    $ig_info = get_field('ig_information', 'option');
+    $ig_info_ =
+        '<script>
+            let url_harga = "' . $ig_info['url_harga'] . '";
+        </script>';
+    echo $ig_info_;
+}
+add_action('wp_head', 'ig_information');
+
+function set_url_validasi()
+{
+    $url_validasi = get_field('tiktok_information', 'option');
+    $url_validasi2 = get_field('ig_general', 'option');
+    $url_validate = '
+    <script> 
+    var url_t_views = "' . $url_validasi['info_url_v'] . '"; 
+    var url_t_likes = "' . $url_validasi['info_url_l'] . '";
+    var url_t_followers = "' . $url_validasi['info_url_f'] . '";
+    var url_i_likes = "' . $url_validasi2['i_l_url'] . '";
+    </script>';
+    echo $url_validate;
+}
+add_action('wp_head', 'set_url_validasi');
