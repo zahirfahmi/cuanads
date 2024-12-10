@@ -19,3 +19,40 @@
                 .deactive
                     color: #dc3545
                     font-weight: 500
+            .button_wrap
+                display: flex
+                flex-direction: row
+                flex-wrap: nowrap
+                gap: 12px
+                @media screen and ( max-width:  480px)
+                    flex-wrap: wrap
+                .primary_btn
+                    padding: 8px 16px
+                    background: #0a0a0a
+                    border-radius: 8px
+                    font-size: 16px
+                    line-height: 24px
+                    display: block
+                    color: #fff
+                    transition: .3s
+                    text-align: center
+                    width: 100%
+                    @media screen and ( max-width:  480px)
+                        width: 100%
+                    &:hover
+                        background: #393939
+                .secondary_btn
+                    padding: 8px 16px
+                    background: #03a87c
+                    color: #fff
+                    border-radius: 8px
+                    font-size: 16px
+                    line-height: 24px
+                    display: block
+                    transition: .3s
+                    text-align: center
+                    width: 100%
+                    @media screen and ( max-width:  480px)
+                        width: 100%
+                    &:hover
+                        background: #048663
