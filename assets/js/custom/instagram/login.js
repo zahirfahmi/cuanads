@@ -24,6 +24,7 @@ $formLogin.on('submit', function (e) {
           jQuery.ajax({
             type: 'POST',
             url: ajaxurl,
+            timeout: 60000,
             data: {
               action: 'ig_login',
               username: $username.val(),
@@ -49,6 +50,9 @@ $formLogin.on('submit', function (e) {
               }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
+              if (textStatus === 'timeout') {
+                clearAll('Silahkan Refresh dan gunakan akun lain');
+              }
               removeBtnLoading();
               removeDisableInput();
             },
