@@ -5,6 +5,7 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-12 col-lg-8">
+                <?php get_template_part('template-parts/home/post-category'); ?>
                 <div class="title spanborder"><span>Semua Post</span></div>
                 <?php
                 $args = array(
@@ -51,19 +52,19 @@ wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-p
                 endif;
                 ?>
             </div>
-            <div class="col-12 col-lg-4 pl-4">
+            <div class="col-12 col-lg-4 ps-0 ps-lg-4">
                 <div class="sticky-top">
-                    <div class="title spanborder"><span>Popular Post</span></div>
+                    <?php get_template_part('template-parts/home/side-category'); ?>
+                    <div class="title spanborder"><span>Post Terbaru</span></div>
                     <ol class="list-featured">
                         <?php
                         $args = array(
                             'post_type'      => 'post',
                             'post_status'    => 'publish',
-                            'posts_per_page' =>  4,
+                            'posts_per_page' =>  3,
                             'orderby'        => 'date',
                             'order'          => 'DESC',
                         );
-
                         $query = new WP_Query($args);
 
                         if ($query->have_posts()) :
