@@ -98,7 +98,7 @@ add_filter('language_attributes', function ($lang) {
 });
 
 add_action('wp_head', function () {
-	$locale = get_locale();
+	$locale = 'id-ID';
 	echo '<meta property="og:locale" content="' . esc_attr($locale) . '" />' . PHP_EOL;
 	echo '<meta property="og:locale:alternate" content="en_US" />' . PHP_EOL;
 	echo '<meta property="og:locale:alternate" content="fr_FR" />' . PHP_EOL;
