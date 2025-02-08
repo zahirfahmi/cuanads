@@ -1,5 +1,11 @@
 <?php
-wp_enqueue_style('all-post', get_stylesheet_directory_uri() . '/assets/css/all-post.min.css');
+wp_enqueue_style(
+    'all-post',
+    get_stylesheet_directory_uri() . '/assets/css/all-post.min.css',
+    false,
+    filemtime(get_theme_file_path('/assets/css/all-post.min.css')),
+    'all'
+);
 wp_enqueue_script('ajax-pagination', get_stylesheet_directory_uri() . '/assets/js/custom/pagination.js', array('jquery'), null, true);
 
 wp_localize_script('ajax-pagination', 'ajaxpagination', array(
