@@ -7,7 +7,7 @@ wp_localize_script('ajax-pagination', 'ajaxpagination', array(
     'nonce'   => wp_create_nonce('ajax-pagination-nonce')
 ));
 
-$posts_per_page = 10;
+$posts_per_page = 20;
 $paged = 1;
 
 $args = array(
@@ -44,7 +44,7 @@ $query = new WP_Query($args);
                                             $categories = get_the_category();
                                             $category_list = [];
                                             foreach ($categories as $category) {
-                                                $category_list[] = '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+                                                $category_list[] = '<a href="' . esc_url(get_category_link($category->term_id)) . '" rel="noopener noreferrer">' . esc_html($category->name) . '</a>';
                                             }
                                             echo implode(', ', $category_list);
                                             ?>
@@ -64,16 +64,20 @@ $query = new WP_Query($args);
 
                 <?php if ($query->max_num_pages != 1): ?>
                     <div id="pagination" class="pagination text-center mt-4">
-                        <button id="prev-btn" data-page="0" disabled>Previous</button>
+                        <button id="prev-btn" class="btn-pagination-prev" data-page="0" disabled>Sebelumnya</button>
                         <?php
                         $total_pages = $query->max_num_pages;
                         if ($total_pages > 1) :
                             for ($i = 1; $i <= $total_pages; $i++) {
-                                echo '<button class="page-btn" data-page="' . $i . '">' . $i . '</button>';
+                                if ($i === 1) {
+                                    echo '<button class="page-btn current__page" data-page="' . $i . '">' . $i . '</button>';
+                                } else {
+                                    echo '<button class="page-btn" data-page="' . $i . '">' . $i . '</button>';
+                                }
                             }
                         endif;
                         ?>
-                        <button id="next-btn" data-page="2">Next</button>
+                        <button id="next-btn" class="btn-pagination-next" data-page="2">Berikutnya</button>
                     </div>
                 <?php endif; ?>
             </div>
@@ -96,7 +100,8 @@ $query = new WP_Query($args);
                         if ($recent_query->have_posts()) :
                             while ($recent_query->have_posts()) : $recent_query->the_post(); ?>
                                 <li>
-                                    <a href="<?php echo get_the_permalink(); ?>" class="text-dark">
+                                    <a href="<?php echo get_the_permalink(); ?>" class="text-dark" rel="noopener noreferrer"
+                                        title="<?php the_title(); ?>">
                                         <span>
                                             <h3>
                                                 <?= get_the_title(); ?>

@@ -25,8 +25,14 @@ jQuery(document).ready(function ($) {
   function updatePagination() {
     $('.page-btn').each(function () {
       let page = $(this).data('page');
+
+      // Menghapus kelas current__page dari semua tombol
+      $(this).removeClass('current__page');
+
+      // Menambahkan kelas current__page pada tombol halaman yang sedang aktif
       if (page === currentPage) {
-        $(this).attr('disabled', true);
+        $(this).addClass('current__page');
+        $(this).attr('disabled', true); // Menonaktifkan tombol halaman yang sedang aktif
       } else {
         $(this).removeAttr('disabled');
       }

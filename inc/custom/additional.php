@@ -18,9 +18,8 @@ function reading_time($ID)
 function load_more_posts()
 {
     check_ajax_referer('ajax-pagination-nonce', 'nonce');
-
     $paged = isset($_POST['page']) ? (int) $_POST['page'] : 1;
-    $posts_per_page = 10;
+    $posts_per_page = 20;
 
     $args = array(
         'post_type'      => 'post',
@@ -30,10 +29,8 @@ function load_more_posts()
         'orderby'        => 'date',
         'order'          => 'DESC',
     );
-
     $query = new WP_Query($args);
     ob_start();
-
     if ($query->have_posts()) :
         while ($query->have_posts()) : $query->the_post();
 ?>
