@@ -65,8 +65,8 @@ $url = get_field('ig_information', 'option');
                                         </div>
                                         <div class="cf-turnstile"
                                             data-sitekey="<?php echo get_turnstile()['site_key']; ?>"></div>
-                                        <div class="mt-3 small">By clicking the button below, you agree to the Terms
-                                            conditions.
+                                        <div class="mt-3 small">Dengan mengklik tombol di bawah ini, Anda menyetujui
+                                            Syarat dan ketentuan.
                                         </div>
                                         <div class="button_wrap">
                                             <button type="submit" id="ig_login_btn" class="primary_btn">
