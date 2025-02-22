@@ -1,0 +1,51 @@
+.hero
+    padding: 64px 0
+    @media screen and ( max-width:  991px)
+        padding: 32px 0
+    &_wrap
+        background-color: #e8f3ec
+        .c_left
+            padding: 0 32px
+            @media screen and ( max-width:  991px)
+                padding: 32px
+            @media screen and ( max-width:  480px)
+                padding: 24px
+            .button_wrap
+                display: flex
+                flex-direction: row
+                gap: 16px
+                flex-wrap: nowrap
+                @media screen and ( max-width:  600px)
+                    flex-wrap: wrap
+                a
+                    text-decoration: none
+                .primary_btn
+                    padding: 8px 16px
+                    background: #0a0a0a
+                    border-radius: 8px
+                    font-size: 16px
+                    line-height: 24px
+                    display: block
+                    color: #fff
+                    transition: .3s
+                    text-align: center
+                    @media screen and ( max-width:  480px)
+                        width: 100%
+                    &:hover
+                        background: #393939
+                .secondary_btn
+                    border: 1px solid #03a87c
+                    padding: 8px 16px
+                    background: transparent
+                    border-radius: 8px
+                    font-size: 16px
+                    line-height: 24px
+                    display: block
+                    color: #03a87c
+                    transition: .3s
+                    text-align: center
+                    @media screen and ( max-width:  480px)
+                        width: 100%
+                    &:hover
+                        background: #03a87c
+                        color: #fff
