@@ -21,6 +21,7 @@ $url = get_field('ig_information', 'option');
             <?php get_template_part('template-parts/components/infobar-nonlogin'); ?>
             <?php get_template_part('template-parts/instagram/login'); ?>
             <?php get_template_part('template-parts/components/account-logout'); ?>
+
             <div class="card-features my-3" id="check_username_body" style="display: none;">
                 <form id="check_username_form" class="form">
                     <div class="form-group">
@@ -72,6 +73,17 @@ $url = get_field('ig_information', 'option');
                     </div>
                 </form>
             </div>
+            <!-- Google Adsense -->
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5537730164062705"
+                crossorigin="anonymous"></script>
+            <!-- In-features -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5537730164062705"
+                data-ad-slot="3783966797" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <!-- Google Adsense -->
         </div>
         <div class="col-12 col-lg-6">
             <?php get_template_part('template-parts/components/tabs-features'); ?>
